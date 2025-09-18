@@ -6,6 +6,10 @@ function MicTranscriber() {
   const [recording, setRecording] = useState(false)
   const [chunks, setChunks] = useState([])
   const [transcript, setTranscript] = useState('')
+  const [reply, setReply] = useState('')
+  const [jobId, setJobId] = useState('')
+  const [transcriptMs, setTranscriptMs] = useState(null)
+  const [replyMs, setReplyMs] = useState(null)
   const [lang, setLang] = useState('id')
   const [task, setTask] = useState('transcribe')
   const [loading, setLoading] = useState(false)
@@ -55,6 +59,11 @@ function MicTranscriber() {
   const uploadAndTranscribe = async () => {
     setLoading(true)
     setError('')
+    setReply('')
+    setJobId('')
+    setTranscriptMs(null)
+    setReplyMs(null)
+    const clickTs = performance.now()
     try {
       const blob = new Blob(chunks, { type: 'audio/webm' })
       const form = new FormData()
@@ -74,6 +83,27 @@ function MicTranscriber() {
 
       const data = await res.json()
       setTranscript(data.text || '')
+      if (data.transcript_ms != null) setTranscriptMs(data.transcript_ms)
+      if (data.job_id) {
+        setJobId(data.job_id)
+        // Start polling for LLM reply
+        const pollStart = performance.now()
+        const poll = async () => {
+          try {
+            const r = await fetch(`http://127.0.0.1:5000/reply/${data.job_id}`)
+            const j = await r.json()
+            if (j.status === 'done' || j.status === 'error' || j.status === 'unavailable') {
+              setReply(j.reply || '')
+              if (j.llm_ms != null) setReplyMs(j.llm_ms)
+              return
+            }
+            setTimeout(poll, 600)
+          } catch {
+            setTimeout(poll, 1000)
+          }
+        }
+        poll()
+      }
     } catch (err) {
       setError(err.message || 'Gagal transcribe')
     } finally {
@@ -130,6 +160,18 @@ function MicTranscriber() {
         <div className='mt-3 p-3 rounded border'>
           <div className='text-sm text-gray-600 mb-1'>Transcript:</div>
           <p>{transcript}</p>
+          {transcriptMs != null && (
+            <div className='text-xs text-gray-500 mt-1'>Transcript time: {transcriptMs} ms</div>
+          )}
+        </div>
+      )}
+      {reply && (
+        <div className='mt-3 p-3 rounded border bg-gray-50'>
+          <div className='text-sm text-gray-600 mb-1'>LLM Reply:</div>
+          <p>{reply}</p>
+          {replyMs != null && (
+            <div className='text-xs text-gray-500 mt-1'>LLM time: {replyMs} ms</div>
+          )}
         </div>
       )}
     </section>
