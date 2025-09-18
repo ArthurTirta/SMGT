@@ -1,11 +1,11 @@
-export default function NavbarDP() {
+export default function HeroDP() {
   return (
     <section className="h-screen w-screen ">
         <div className="bg-red-900 flex w-full h-4/6">
         <img src="../src/assets/any.jpg" className=" w-full object-cover" alt="" />
         
         </div>
-        <div className="flex flex-row justify-around items-center h-2/6 p-10">
+        <div className="flex flex-row justify-around bg-primary items-center h-2/6 p-10">
             <p className="w-1/2 font-jersey text-5xl flex flex-col"> 
             <span> Welcome to Our</span>
             <span> Children's Ministry</span>

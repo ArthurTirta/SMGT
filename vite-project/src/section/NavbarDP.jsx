@@ -2,7 +2,7 @@ export default function NavbarDP() {
 return(
     <section className=" min-w-screen z-50 fixed top-0 left-0">
     {/* <nav id="desktop" className="flex flex-row justify-around p-3 bg-primary"> */}
-    <nav id="desktop" className="flex flex-row justify-around p-3 bg-primary">
+    <nav id="desktop" className="flex flex-row justify-around p-3 bg-primary border-2">
         <div className="flex flex-row gap-10 font-jersey text-xl "> 
             <span>Logo</span>
             <span>Home Page</span>

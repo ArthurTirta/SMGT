@@ -1,6 +1,6 @@
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
-import { TextHoverEffect } from "../components/ui/text-hover-effeect"
+import { TextHoverEffect } from "../../components/ui/text-hover-effeect"
 import { useRef } from "react"
 import { ScrollTrigger } from "gsap/all"
 
