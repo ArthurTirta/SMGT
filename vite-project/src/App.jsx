@@ -7,8 +7,9 @@ import Service from './section/service'
 import NavbarDP from './section/NavbarDP'
 import HeroDp from './section/HeroDP'
 import Vision from './section/vision'
-import MicTranscriber from './section/MicTranscriber'
+import ChatInterface from './section/ChatInterface'
 import Classes from './section/classes'
+import Photo from './section/Photogallery'
 function App() {
   return (
     <>
@@ -17,7 +18,8 @@ function App() {
       <HeroDp></HeroDp>
       <Vision></Vision>
       <Classes></Classes>
-      <MicTranscriber />
+      <ChatInterface />
+      <Photo></Photo>
 
       {/* <Navbar></Navbar> */}
 

@@ -14,6 +14,7 @@ function MicTranscriber() {
   const [task, setTask] = useState('transcribe')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const audioRef = useRef(null)
 
   useEffect(() => {
     // request mic permission on mount
@@ -93,7 +94,9 @@ function MicTranscriber() {
             const r = await fetch(`http://127.0.0.1:5000/reply/${data.job_id}`)
             const j = await r.json()
             if (j.status === 'done' || j.status === 'error' || j.status === 'unavailable') {
-              setReply(j.reply || '')
+              const plain = j.reply_plain
+              const safeText = typeof j.reply === 'string' ? j.reply : (j.reply ? JSON.stringify(j.reply) : '')
+              setReply(plain || safeText)
               if (j.llm_ms != null) setReplyMs(j.llm_ms)
               return
             }
@@ -169,6 +172,35 @@ function MicTranscriber() {
         <div className='mt-3 p-3 rounded border bg-gray-50'>
           <div className='text-sm text-gray-600 mb-1'>LLM Reply:</div>
           <p>{reply}</p>
+          <div className='mt-2 flex items-center gap-2'>
+            <button
+              className='px-3 py-2 rounded bg-purple-600 text-white'
+              onClick={async () => {
+                try {
+                  const res = await fetch('http://127.0.0.1:5000/tts', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text: reply })
+                  })
+                  if (!res.ok) {
+                    const e = await res.json().catch(() => ({}))
+                    throw new Error(e.error || `HTTP ${res.status}`)
+                  }
+                  const blob = await res.blob()
+                  const url = URL.createObjectURL(blob)
+                  if (audioRef.current) {
+                    audioRef.current.src = url
+                    audioRef.current.play()
+                  }
+                } catch (err) {
+                  setError(err.message || 'Gagal memutar audio')
+                }
+              }}
+            >
+              Speak
+            </button>
+            <audio ref={audioRef} controls className='h-9' />
+          </div>
           {replyMs != null && (
             <div className='text-xs text-gray-500 mt-1'>LLM time: {replyMs} ms</div>
           )}
