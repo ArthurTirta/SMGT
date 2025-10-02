@@ -4,11 +4,16 @@ return(
     {/* <nav id="desktop" className="flex flex-row justify-around p-3 bg-primary"> */}
     <nav id="desktop" className="flex flex-row justify-around p-3 bg-primary border-2">
         <div className="flex flex-row gap-10 font-jersey text-xl "> 
-            <span>Logo</span>
-            <span>Home Page</span>
-            <span>About Us</span>
-            <span>Clasess</span>
-            <span>Event</span>
+            <button type="button">
+                <a href="#hero">Logo</a>
+            </button>
+            <button type="button">
+                <a href="#vision">About Us</a>
+            </button>
+            <button type="button">
+                <a href="#classes">Classes</a>
+            </button>
+            {/* <span>Event</span> */}
 
         </div>
         <div className="flex flex-row gap-5 w-1/5">

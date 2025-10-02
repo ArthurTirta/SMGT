@@ -1,6 +1,6 @@
 export default function HeroDP() {
   return (
-    <section className="h-screen w-screen ">
+    <section id="hero" className="h-screen w-screen ">
         <div className="bg-red-900 flex w-full h-4/6">
         <img src="../src/assets/any.jpg" className=" w-full object-cover" alt="" />
         

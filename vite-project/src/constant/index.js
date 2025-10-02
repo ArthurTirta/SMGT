@@ -1,3 +1,5 @@
+import { Children } from "react";
+
 // index.js
 export const servicesData = [
   {
@@ -170,9 +172,38 @@ export const projects = [
     ],
   },
 ];
-export const socials = [
-  { name: "Instagram", title:"@arthur.tj", href: "https://www.instagram.com/arthur.tj/", gambar: "/src/assets/instagram.svg" },
-  { name: "LinkedIn",title: "Arthur Tirtajaya Jehuda", href: "https://www.linkedin.com/in/arthur-tirtajaya/", gambar: "/src/assets/linkedin.svg"},
-  { name: "GitHub",title:"ArthurTirta", href: "https://github.com/ArthurTirta",gambar: "/src/assets/github.svg"  },
-  { name: "Gmail",title:"arthur.tirtajaya@gmail.com", href:".",gambar: "/src/assets/icons8-gmail.svg"  },
+export const kontak = [
+  { name: "Instagram", title:"@smgtpnielmanggar", href: "https://www.instagram.com/smgtpnielmanggar/", gambar: "../src/assets/icons/instagram.svg" },
+  // { name: "LinkedIn",title: "Arthur Tirtajaya Jehuda", href: "https://www.linkedin.com/in/arthur-tirtajaya/", gambar: "/src/assets/linkedin.svg"},
+  // { name: "GitHub",title:"ArthurTirta", href: "https://github.com/ArthurTirta",gambar: "/src/assets/github.svg"  },
+  { name: "Gmail",title:"smgtjemaatpnielmanggar@gmail.com", 
+    // href:"",
+    gambar: "../src/assets/icons/icons8-gmail.svg"  },
 ];
+
+export const kelas = [
+  {
+    name : "Toddlers",
+    age: "0-5",
+    description: "Interactive Bible stories, songs, and playtime to introduce toddlers to God's love. Our toddler program introduces young children to the love of God through fun activities and stories.",
+     image: "/src/assets/Indria.jpg"
+  },
+  {
+    name: " Preteens",
+    age: "5-11",
+    description: "Engaging lessons, crafts, and games that teach biblical values and encourage friendship. Our young children's classes focus on building a strong foundation of faith through interactive lessons and activities.",
+    image: "/src/assets/bb.jpg"
+  },
+  {
+    name : "Teenagers",
+    age : "11-14",
+    description: "Dynamic discussions, service projects, and mentorship to help teens navigate faith and life. Our youth group provides a supportive community where teenagers can explore their faith and develop leadership skills.",
+     image: "/src/assets/xbesar.jpg"
+  },
+  {
+    name : "Old Children",
+    age : "14-18",
+    description: "In-depth Bible studies, leadership opportunities, and mission trips to empower young adults in their faith journey. Our young adult ministry offers opportunities for spiritual growth and service through Bible studies and outreach programs.",
+    image: "/src/assets/remaja.jpg"
+  }
+]

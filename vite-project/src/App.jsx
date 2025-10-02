@@ -9,7 +9,10 @@ import HeroDp from './section/HeroDP'
 import Vision from './section/vision'
 import ChatInterface from './section/ChatInterface'
 import Classes from './section/classes'
-import Photo from './section/Photogallery'
+import Banner from './section/banner'
+import Slider from './section/slider'
+import Contact from './section/Footer'
+
 function App() {
   return (
     <>
@@ -19,16 +22,15 @@ function App() {
       <Vision></Vision>
       <Classes></Classes>
       <ChatInterface />
-      <Photo></Photo>
-
+      <Banner></Banner>
+      <Slider></Slider>
+      <Contact></Contact>
       {/* <Navbar></Navbar> */}
 
       {/* <Hero></Hero> */}
       {/* <Service/> */}
       
-      <section className='min-h-screen'></section>
-      <section className='min-h-screen'></section>
-      <section className='min-h-screen'></section>
+
     </div>
     </>
   )

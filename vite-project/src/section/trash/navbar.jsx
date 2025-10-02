@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react"
-import {socials} from "../../constant"
+// import {socials} from "../../constant"
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 
